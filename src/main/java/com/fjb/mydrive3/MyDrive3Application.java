@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Mydrive3Application {
+public class MyDrive3Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Mydrive3Application.class, args);
+		SpringApplication.run(MyDrive3Application.class, args);
 	}
 
 }

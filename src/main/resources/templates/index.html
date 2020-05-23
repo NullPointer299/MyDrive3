@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>index.html</title>
+</head>
+<body>
+<h1>名前を入力してね～</h1>
+<form action="home" method="post" th:object="${nameForm}">
+    <input type="text" name="firstName" th:field="*{firstName}">
+    <input type="text" name="lastName" th:field="*{lastName}">
+    <input type="submit" value="submit">
+</form>
+</body>
+</html>
