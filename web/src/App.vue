@@ -1,7 +1,7 @@
 <template lang="pug">
     #app
         .d-flex.flex-row
-            TopBar.d-flex.mb-3
+            TopBar.d-flex
         router-view
 </template>
 
