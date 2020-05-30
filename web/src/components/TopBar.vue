@@ -4,7 +4,7 @@
             span.hamburger-item.align-self-center
         b-sidebar#side-nav(title="MyDrive" shadow bg-variant="light" text-variant="dark" width="200px" header-class="header" @click.esc="hide")
             b-nav(vertical align="center")
-                b-nav-item(v-for="(page,i) in pages" :active="currentPage === i" @click="clicked(i)" link-classes="links" :key="page.url" :to="page.url") {{page.name}}
+                b-nav-item(v-for="(page,i) in pages" :active="currentPage === i" @click="clicked(i)" link-classes="link" :key="page.url" :to="page.url") {{page.name}}
         .top-bar-items.d-flex.justify-content-center
             b-icon-gear.align-self-center(font-scale="1.2" variant="light")
         .top-bar-items.d-flex.justify-content-center
@@ -104,13 +104,13 @@
                 color: white !important;
             }
 
-            .links {
+            .link {
                 text-decoration: none;
                 color: $main-color;
                 font-weight: bold;
 
                 &:hover {
-                    background-color: gainsboro;
+                    background-color: $hover-color;
                 }
             }
         }

@@ -1,44 +1,54 @@
 <template lang="pug">
     .wrapper
-        .content-top-bar
-            .content-top-bar-item
+        .d-inline-block.border-bottom.w-100
+            .text-nowrap.content-top-bar-item.h-100
                 b-button-group
                     b-button(squared variant="light" size="sm" )
                         b-icon-cloud-download(scale="1.1")
-                        span.ml-2 Download
+                        span.font-weight-bold.ml-2.font-15px Download
                     b-dropdown(variant="light" class="d-flex" size="sm" )
                         template(v-slot:button-content)
                             b-icon-cloud-upload(scale="1.1")
-                            span.ml-2 Upload
+                            span.font-weight-bold.ml-2.font-15px Upload
                         b-dropdown-item(href="#" v-b-modal.modal-upload-file) File
                         b-modal#modal-upload-file(title="Upload File" @ok="" @cancel="cancel" )
-                            b-form-file(v-model="files" placeholder="Choose a file or drop it here..." multiple).oh
-                            ul.selected-files
-                                h2 {{files.length}} Files Selected...
-                                li(v-for="file in files") {{file.name}}
+                            b-form-file(v-model="uploadFiles" placeholder="Choose a file or drop it here..." multiple).overflow-hidden
+                            ul.pl-0
+                                h2 {{uploadFiles.length}} Files Selected...
+                                li.ml-4(v-for="file in uploadFiles") {{file.name}}
 
                         b-dropdown-item(href="#" v-b-modal.modal-upload-folder) Folder
                         b-modal#modal-upload-folder(title="upload Folder")
-                            b-form-file(v-model="directory" placeholder="Choose a folder or drop it here..." directory)
+                            b-form-file(v-model="uploadDirectory" placeholder="Choose a folder or drop it here..." directory)
                             h2 Selected Folder...
                             div {{getDirectoryName}}
                     b-button(squared variant="light" size="sm")
                         b-icon-trash(scale="1.1")
-                        span.ml-2 Remove
+                        span.font-weight-bold.ml-2.font-15px Remove
+        b-breadcrumb.px-2.py-1.font-weight-bold.no-radius(:items="getBreadcrumb")
+        .files-area.d-flex
+            file-view(v-for="item in getCurrentDirectory" :item="item" :key="item.fileId")
 </template>
 
 <script>
+    import FileView from "./FileView";
     export default {
         name: "MainContent",
         data: function () {
             return {
-                files: [],
-                directory: null
+                uploadFiles: [],
+                uploadDirectory: null
             }
         },
         computed: {
             getDirectoryName() {
-                return this.directory === null ? 'Not Selected' : this.directory.name
+                return this.uploadDirectory === null ? 'Not Selected' : this.uploadDirectory.filename
+            },
+            getCurrentDirectory(){
+                return this.$store.getters.getCurrentDirectory
+            },
+            getBreadcrumb(){
+                return this.$store.getters.getBreadcrumb
             }
         },
         methods: {
@@ -48,40 +58,16 @@
             upload(){
                 this.$store.dispatch('uploadFiles',this.files)
             }
+        },
+        components: {
+            FileView
         }
     }
 </script>
 
 <style scoped lang="scss">
-    .oh {
-        overflow: hidden;
-    }
-
-    .selected-files {
-        padding-left: 0;
-
-        li {
-            margin-left: 30px;
-        }
-    }
-
-    .wrapper {
-        .content-top-bar {
-            display: inline-block;
-            width: 100%;
-            border-bottom: 1px solid lightgray;
-
-            .content-top-bar-item {
-                height: 100%;
-                white-space: nowrap;
-
-                span {
-                    display: inline-block;
-                    font-size: 15px;
-                    font-weight: bold;
-                }
-
-            }
-        }
+    @import "../assets/scss/global.scss";
+    .font-15px{
+        font-size: 15px;
     }
 </style>

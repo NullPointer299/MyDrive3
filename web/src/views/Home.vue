@@ -41,25 +41,17 @@
                 this.width = data.width;
                 this.event = data.eventName;
             }
+        },
+        beforeCreate() {
+            this.$store.dispatch('init')
         }
     }
-
 </script>
 <style lang="scss" scoped>
     .content {
-        height: calc(100vh - 50px);
-
+        height: calc(100vh - 50px);//ビューポートからTopBarの高さを引く
         .resize-box {
-            height: calc(100vh - 50px);
-            overflow: hidden;
-            box-shadow: 1px 1px 5px gray;
-
-            ul#tree-root{
-                height: 100%;
-                list-style: none;
-                margin: 0;
-                padding-left: 15px;
-            }
+            border-right: 2px solid lightgray;
         }
     }
 </style>
