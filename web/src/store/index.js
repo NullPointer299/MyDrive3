@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {INIT, DOWN_DIRECTORY, MOVE_DIRECTORY_ON_BREADCRUMB} from "./mutation_types";
 
 Vue.use(Vuex)
 

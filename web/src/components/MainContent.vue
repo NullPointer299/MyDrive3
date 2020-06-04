@@ -25,13 +25,15 @@
                     b-button(squared variant="light" size="sm")
                         b-icon-trash(scale="1.1")
                         span.font-weight-bold.ml-2.font-15px Remove
-        b-breadcrumb.px-2.py-1.font-weight-bold.no-radius(:items="getBreadcrumb")
+        b-breadcrumb.px-2.py-1.font-weight-bold.no-radius
+            b-breadcrumb-item.active(v-for="(item,index) in getBreadcrumb" :key="index" @click="moveDirectoryOnBreadcrumb(item)" :active="item.active" ) {{item.name}}
         .files-area.d-flex
             file-view(v-for="item in getCurrentDirectory" :item="item" :key="item.fileId")
 </template>
 
 <script>
     import FileView from "./FileView";
+
     export default {
         name: "MainContent",
         data: function () {
@@ -57,6 +59,9 @@
             },
             upload(){
                 this.$store.dispatch('uploadFiles',this.files)
+            },
+            moveDirectoryOnBreadcrumb(item){
+                this.$store.dispatch('moveDirectoryOnBreadcrumb',item)
             }
         },
         components: {
