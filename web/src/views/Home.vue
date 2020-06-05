@@ -5,6 +5,7 @@
             :fit-parent="fit"
             :min-width="minW"
             :width="width"
+            :max-width="800"
             @mount="eHandler"
             @resize:move="eHandler"
             @resize:start="eHandler"
@@ -29,7 +30,7 @@
                 minW: 100,
                 fit: true,
                 event: "",
-                fileTree:this.$store.getters.getFileTree
+                fileTree: this.$store.getters.getFileTree
             }
         },
         components: {
@@ -49,7 +50,7 @@
 </script>
 <style lang="scss" scoped>
     .content {
-        height: calc(100vh - 50px);//ビューポートからTopBarの高さを引く
+        height: calc(100vh - 50px); //ビューポートからTopBarの高さを引く
         .resize-box {
             border-right: 2px solid lightgray;
         }

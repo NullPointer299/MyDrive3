@@ -1,5 +1,5 @@
 <template lang="pug">
-    #file.d-flex.justify-content-center.flex-column.ml-1.pt-2.position-relative(@contextmenu.prevent="context" @dblclick.prevent="dblclick")
+    #file.d-flex.justify-content-center.flex-column.ml-1.pt-2(@contextmenu.prevent="context" @dblclick.prevent="dblclick")
         font-awesome-icon.align-self-center(:icon="item.children ? 'folder':'file'")
         .mt-2.px-1.font-weight-bold.text-center.ellipsis {{name}}
 </template>
