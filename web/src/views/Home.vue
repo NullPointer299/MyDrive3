@@ -1,25 +1,22 @@
 <template lang="pug">
-    div.content
-        vue-resizable(
+    div.content.d-flex
+        vue-resizable.h-100.resize-box.overflow-hidden(
             :active="handlers"
-            :fit-parent="fit"
-            :min-width="minW"
             :width="width"
             :max-width="800"
             @mount="eHandler"
             @resize:move="eHandler"
             @resize:start="eHandler"
-            @resize:end="eHandler"
-            @drag:move="eHandler"
-            @drag:start="eHandler"
-            @drag:end="eHandler").resize-box
-            ul#tree-root
+            @resize:end="eHandler")
+            ul#tree-root.h-100.pl-2.list-unstyled
                 file-tree(:item="fileTree")
+        main-content.flex-grow-1
 </template>
 
 <script>
     import VueResizable from 'vue-resizable'
     import FileTree from "../components/FileTree";
+    import MainContent from "../components/MainContent";
 
     export default {
         name: "Home",
@@ -27,15 +24,14 @@
             return {
                 handlers: ["r"],
                 width: 150,
-                minW: 100,
-                fit: true,
                 event: "",
                 fileTree: this.$store.getters.getFileTree
             }
         },
         components: {
             VueResizable,
-            FileTree
+            FileTree,
+            MainContent
         },
         methods: {
             eHandler(data) {
